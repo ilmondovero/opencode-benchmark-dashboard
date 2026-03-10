@@ -38,6 +38,24 @@
     if (!thead || !tbody) return;
     const filteredModels = selectedModels.length > 0 ? selectedModels : models;
     heatmapResults = {};
+    const winners = {};
+    const modelWins = {};
+    for (const tc of testCases) {
+      let fastest = null;
+      for (const m of filteredModels) {
+        const result = modelData[m].allResults.find((r) => r.testCase === tc);
+        if (result) {
+          const isCorrect = result.verification ? result.verification.correct : result.correct;
+          if (isCorrect && (!fastest || result.latencyMs < fastest.latencyMs)) {
+            fastest = { model: m, latencyMs: result.latencyMs };
+          }
+        }
+      }
+      if (fastest) {
+        winners[tc] = fastest;
+        modelWins[fastest.model] = (modelWins[fastest.model] || 0) + 1;
+      }
+    }
     thead.innerHTML = '<tr><th class="model-col">Model</th>' + testCases.map((tc) => "<th>" + tc + "</th>").join("") + "</tr>";
     tbody.innerHTML = filteredModels.map((m) => {
       const data = modelData[m];
@@ -57,11 +75,13 @@
           const cls = getHeatmapClass(isCorrect, finalScore);
           const pct = Math.round(finalScore * 100);
           const seconds = Math.round(result.latencyMs / 1e3);
-          return '<td class="heatmap-cell ' + cls + '" data-key="' + m + "|" + tc + '">' + pct + "% (" + seconds + "s)</td>";
+          const isWinner = winners[tc]?.model === m;
+          const winnerBadge = isWinner ? " \u26A1" : "";
+          return '<td class="heatmap-cell ' + cls + '" data-key="' + m + "|" + tc + '">' + pct + "% (" + seconds + "s)" + winnerBadge + "</td>";
         }
         return '<td class="heatmap-cell heatmap-empty" data-key="' + m + "|" + tc + '">-</td>';
       });
-      return '<tr><td class="model-name">' + m + "</td>" + cells.join("") + "</tr>";
+      return '<tr><td class="model-name">' + m + ' <span class="win-count">(' + (modelWins[m] || 0) + " wins)</span></td>" + cells.join("") + "</tr>";
     }).join("");
   }
   function showModal(key) {

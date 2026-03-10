@@ -109,6 +109,12 @@ h2 {
   z-index: 5;
 }
 
+.win-count {
+  font-size: 11px;
+  color: #8b7355;
+  font-weight: normal;
+}
+
 .heatmap-cell {
   cursor: pointer;
   transition: transform 0.1s;
