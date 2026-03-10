@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Opencode Benchmark Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="/dashboard.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🧪 Opencode Benchmark Dashboard</h1>
+    
+    <div class="stats">
+      <div class="stat-card">
+        <h3>Total Models</h3>
+        <div class="value" id="totalModels">-</div>
+      </div>
+      <div class="stat-card">
+        <h3>Total Runs</h3>
+        <div class="value" id="totalRuns">-</div>
+      </div>
+    </div>
+
+    <div class="charts">
+      <div class="chart-container">
+        <canvas id="scatterChart"></canvas>
+      </div>
+    </div>
+
+    <h2 style="margin: 30px 0 15px;">📊 Results Heatmap</h2>
+    <div class="filters">
+      <label>Filter by model:</label>
+      <div class="filter-controls">
+        <select id="modelSelect" multiple size="4"></select>
+        <div class="filter-actions">
+          <button class="refresh-btn" id="filterBtn">Filter</button>
+          <button class="refresh-btn" id="clearFilterBtn">Clear</button>
+          <button class="refresh-btn" id="refreshBtn">Refresh</button>
+        </div>
+      </div>
+    </div>
+    <div class="heatmap-table">
+      <table id="heatmapTable">
+        <thead id="heatmapHead"></thead>
+        <tbody id="heatmapBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modalTitle">Result Details</h3>
+        <button class="modal-close" id="modalClose">&times;</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+      </div>
+    </div>
+  </div>
+
+  <script src="/dashboard.js"></script>
+</body>
+</html>

@@ -5,12 +5,14 @@
   "scripts": {
     "answer": "bun run src/answer.ts",
     "evaluate": "bun run src/evaluate.ts",
-    "dashboard": "bun run src/dashboard.ts"
+    "dashboard": "bun run src/dashboard.ts",
+    "build:dashboard": "esbuild public/dashboard.ts --bundle --outfile=public/dashboard.js --format=iife --target=es2020"
   },
   "dependencies": {
     "chokidar": "^3.6.0"
   },
   "devDependencies": {
-    "@types/bun": "^1.1.0"
+    "@types/bun": "^1.1.0",
+    "esbuild": "^0.24.0"
   }
 }
