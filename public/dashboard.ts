@@ -128,7 +128,10 @@ function renderHeatmap(selectedModels: string[] = []): void {
       return '<td class="heatmap-cell heatmap-empty" data-key="' + m + '|' + tc + '">-</td>';
     });
     
-    return '<tr><td class="model-name">' + m + ' <span class="win-count">(' + (modelWins[m] || 0) + ' wins)</span></td>' + cells.join('') + '</tr>';
+    const totalLatency = data.allResults.reduce((sum, r) => sum + r.latencyMs, 0);
+    const totalSeconds = Math.round(totalLatency / 1000);
+    
+    return '<tr><td class="model-name">' + m + ' <span class="win-count">(' + (modelWins[m] || 0) + ' wins, ' + totalSeconds + 's)</span></td>' + cells.join('') + '</tr>';
   }).join('');
 }
 

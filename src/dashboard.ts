@@ -11,11 +11,6 @@ function getLatencyMs(result: RunSummary["results"][0]): number {
   if (result.latencyMs && result.latencyMs > 0) {
     return result.latencyMs;
   }
-  if (result.llmVerification?.timestamp && result.timestamp) {
-    const resultTime = new Date(result.timestamp).getTime();
-    const verifyTime = new Date(result.llmVerification.timestamp).getTime();
-    return verifyTime - resultTime;
-  }
   return 0;
 }
 
