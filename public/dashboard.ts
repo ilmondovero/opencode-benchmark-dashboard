@@ -406,7 +406,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const list = document.getElementById('modelCheckboxList');
     if (!list) return;
     
-    const filteredModels = models.filter(m => m.toLowerCase().includes(filter.toLowerCase()));
+    const filteredModels = models.filter(m => m.toLowerCase().includes(filter.toLowerCase())).sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
     list.innerHTML = filteredModels.map(m => {
       const isSelected = selectedModels.has(m);
       return '<div class="model-checkbox-item' + (isSelected ? ' selected' : '') + '">' +

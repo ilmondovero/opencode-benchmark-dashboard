@@ -16,6 +16,25 @@ h1 {
   margin-bottom: 20px;
 }
 
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.header-row h1 {
+  margin-bottom: 0;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 h2 {
   color: #3d2e1f;
   margin: 30px 0 15px;

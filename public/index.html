@@ -9,7 +9,26 @@
 </head>
 <body>
   <div class="container">
-    <h1>🧪 Opencode Benchmark Dashboard</h1>
+    <div class="header-row">
+      <h1>🧪 Opencode Benchmark Dashboard</h1>
+      <div class="header-controls">
+        <div class="model-dropdown" id="modelDropdown">
+          <div class="model-dropdown-trigger" id="modelDropdownTrigger">
+            <span id="modelDropdownLabel">Select models...</span>
+            <span class="model-dropdown-arrow">▼</span>
+          </div>
+          <div class="model-dropdown-panel" id="modelDropdownPanel">
+            <input type="text" class="model-filter-input" id="modelFilterInput" placeholder="Filter models...">
+            <div class="model-filter-actions">
+              <button class="model-filter-btn" id="selectAllModels">Select All</button>
+              <button class="model-filter-btn" id="clearAllModels">Clear All</button>
+            </div>
+            <div class="model-checkbox-list" id="modelCheckboxList"></div>
+          </div>
+        </div>
+        <button class="refresh-btn" id="refreshBtn">Refresh</button>
+      </div>
+    </div>
     
     <div class="stats">
       <div class="stat-card">
@@ -29,28 +48,6 @@
     </div>
 
     <h2 style="margin: 30px 0 15px;">📊 Results Heatmap</h2>
-    <div class="filters">
-      <label>Filter by model:</label>
-      <div class="filter-controls">
-        <div class="model-dropdown" id="modelDropdown">
-          <div class="model-dropdown-trigger" id="modelDropdownTrigger">
-            <span id="modelDropdownLabel">Select models...</span>
-            <span class="model-dropdown-arrow">▼</span>
-          </div>
-          <div class="model-dropdown-panel" id="modelDropdownPanel">
-            <input type="text" class="model-filter-input" id="modelFilterInput" placeholder="Filter models...">
-            <div class="model-filter-actions">
-              <button class="model-filter-btn" id="selectAllModels">Select All</button>
-              <button class="model-filter-btn" id="clearAllModels">Clear All</button>
-            </div>
-            <div class="model-checkbox-list" id="modelCheckboxList"></div>
-          </div>
-        </div>
-        <div class="filter-actions">
-          <button class="refresh-btn" id="refreshBtn">Refresh</button>
-        </div>
-      </div>
-    </div>
     <div class="heatmap-table">
       <table id="heatmapTable">
         <thead id="heatmapHead"></thead>

@@ -317,7 +317,7 @@
     function populateModelCheckboxList(filter = "") {
       const list = document.getElementById("modelCheckboxList");
       if (!list) return;
-      const filteredModels = models.filter((m) => m.toLowerCase().includes(filter.toLowerCase()));
+      const filteredModels = models.filter((m) => m.toLowerCase().includes(filter.toLowerCase())).sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
       list.innerHTML = filteredModels.map((m) => {
         const isSelected = selectedModels.has(m);
         return '<div class="model-checkbox-item' + (isSelected ? " selected" : "") + '"><input type="checkbox" value="' + m + '"' + (isSelected ? " checked" : "") + ' id="model-check-' + m.replace(/[^a-zA-Z0-9]/g, "_") + '"><label for="model-check-' + m.replace(/[^a-zA-Z0-9]/g, "_") + '">' + m + "</label></div>";
