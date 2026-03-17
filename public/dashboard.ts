@@ -400,32 +400,103 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   // Model filter
-  function populateModelSelect(): void {
-    const modelSelect = document.getElementById('modelSelect') as HTMLSelectElement;
-    if (!modelSelect) return;
-    modelSelect.innerHTML = models.map(m => '<option value="' + m + '">' + m + '</option>').join('');
+  let selectedModels: Set<string> = new Set();
+
+  function populateModelCheckboxList(filter = ''): void {
+    const list = document.getElementById('modelCheckboxList');
+    if (!list) return;
+    
+    const filteredModels = models.filter(m => m.toLowerCase().includes(filter.toLowerCase()));
+    list.innerHTML = filteredModels.map(m => {
+      const isSelected = selectedModels.has(m);
+      return '<div class="model-checkbox-item' + (isSelected ? ' selected' : '') + '">' +
+        '<input type="checkbox" value="' + m + '"' + (isSelected ? ' checked' : '') + ' id="model-check-' + m.replace(/[^a-zA-Z0-9]/g, '_') + '">' +
+        '<label for="model-check-' + m.replace(/[^a-zA-Z0-9]/g, '_') + '">' + m + '</label>' +
+        '</div>';
+    }).join('');
+
+    // Add click handlers
+    list.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener('change', (e) => {
+        const target = e.target as HTMLInputElement;
+        if (target.checked) {
+          selectedModels.add(target.value);
+        } else {
+          selectedModels.delete(target.value);
+        }
+        updateDropdownLabel();
+        applyFilter();
+      });
+    });
+  }
+
+  function updateDropdownLabel(): void {
+    const label = document.getElementById('modelDropdownLabel');
+    if (!label) return;
+    
+    if (selectedModels.size === 0) {
+      label.textContent = 'Select models...';
+    } else if (selectedModels.size === 1) {
+      label.textContent = Array.from(selectedModels)[0];
+    } else {
+      label.textContent = selectedModels.size + ' models selected';
+    }
+  }
+
+  function setupModelFilter(): void {
+    const trigger = document.getElementById('modelDropdownTrigger');
+    const dropdown = document.getElementById('modelDropdown');
+    const filterInput = document.getElementById('modelFilterInput');
+    const selectAllBtn = document.getElementById('selectAllModels');
+    const clearAllBtn = document.getElementById('clearAllModels');
+
+    if (!trigger || !dropdown) return;
+
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdown.classList.toggle('open');
+      if (dropdown.classList.contains('open')) {
+        filterInput?.focus();
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!dropdown.contains(e.target as Node)) {
+        dropdown.classList.remove('open');
+      }
+    });
+
+    filterInput?.addEventListener('input', (e) => {
+      const target = e.target as HTMLInputElement;
+      populateModelCheckboxList(target.value);
+    });
+
+    selectAllBtn?.addEventListener('click', () => {
+      models.forEach(m => selectedModels.add(m));
+      populateModelCheckboxList(filterInput ? (filterInput as HTMLInputElement).value : '');
+      updateDropdownLabel();
+      applyFilter();
+    });
+
+    clearAllBtn?.addEventListener('click', () => {
+      selectedModels.clear();
+      populateModelCheckboxList(filterInput ? (filterInput as HTMLInputElement).value : '');
+      updateDropdownLabel();
+      applyFilter();
+    });
+
+    populateModelCheckboxList();
+    updateDropdownLabel();
   }
 
   function applyFilter(): void {
-    const modelSelect = document.getElementById('modelSelect') as HTMLSelectElement;
-    const selected = Array.from(modelSelect?.selectedOptions || []).map(opt => opt.value).filter(v => v);
-    const selectedModels = selected.length > 0 ? selected : [];
-    renderHeatmap(selectedModels);
-    createChart(selectedModels);
-    updateStatsFiltered(selectedModels);
+    const selected = selectedModels.size > 0 ? Array.from(selectedModels) : [];
+    renderHeatmap(selected);
+    createChart(selected);
+    updateStatsFiltered(selected);
   }
 
-  const modelSelect = document.getElementById('modelSelect') as HTMLSelectElement;
-
-  const filterBtn = document.getElementById('filterBtn');
-  filterBtn?.addEventListener('click', applyFilter);
-
-  const clearFilterBtn = document.getElementById('clearFilterBtn');
-  clearFilterBtn?.addEventListener('click', () => {
-    if (modelSelect) {
-      Array.from(modelSelect.options).forEach(opt => opt.selected = false);
-    }
-  });
+  const modelSelect = document.getElementById('modelSelect');
 
   // Refresh button
   const refreshBtn = document.getElementById('refreshBtn');
@@ -441,13 +512,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       (window as unknown as { models: string[] }).models = Object.keys(fresh.models).sort();
       
       // Update filter dropdown
-      populateModelSelect();
-      
-      // Clear filter
-      const modelSelectRefresh = document.getElementById('modelSelect') as HTMLSelectElement;
-      if (modelSelectRefresh) {
-        Array.from(modelSelectRefresh.options).forEach(opt => opt.selected = false);
-      }
+      selectedModels.clear();
+      populateModelCheckboxList();
+      updateDropdownLabel();
       
       createChart();
       updateStats(fresh);
@@ -460,7 +527,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Initial render - wait for data to load first
   await loadData();
-  populateModelSelect();
+  setupModelFilter();
   createChart();
   updateStats({ runs: [], models });
   renderHeatmap();

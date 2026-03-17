@@ -203,6 +203,127 @@ h2 {
   align-items: flex-start;
 }
 
+.model-dropdown {
+  position: relative;
+  display: inline-block;
+  min-width: 300px;
+}
+
+.model-dropdown-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border: 1px solid #d4c4a8;
+  border-radius: 4px;
+  background: #faf6eb;
+  color: #5c4b37;
+  cursor: pointer;
+  font-size: 14px;
+  min-height: 38px;
+}
+
+.model-dropdown-trigger:hover {
+  border-color: #8b7355;
+}
+
+.model-dropdown-arrow {
+  font-size: 10px;
+  margin-left: 8px;
+  color: #7a6a56;
+}
+
+.model-dropdown-panel {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #faf6eb;
+  border: 1px solid #d4c4a8;
+  border-radius: 4px;
+  margin-top: 4px;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-height: 300px;
+  overflow: hidden;
+  flex-direction: column;
+}
+
+.model-dropdown.open .model-dropdown-panel {
+  display: flex;
+}
+
+.model-filter-input {
+  padding: 8px 12px;
+  border: none;
+  border-bottom: 1px solid #d4c4a8;
+  background: white;
+  font-size: 14px;
+  outline: none;
+  border-radius: 0;
+}
+
+.model-filter-input:focus {
+  border-bottom-color: #8b7355;
+}
+
+.model-filter-actions {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  border-bottom: 1px solid #e0d5c4;
+}
+
+.model-filter-btn {
+  flex: 1;
+  padding: 4px 8px;
+  font-size: 12px;
+  background: #e0d5c4;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  color: #5c4b37;
+}
+
+.model-filter-btn:hover {
+  background: #d4c4a8;
+}
+
+.model-checkbox-list {
+  overflow-y: auto;
+  flex: 1;
+  max-height: 200px;
+}
+
+.model-checkbox-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.model-checkbox-item:hover {
+  background: #e8e0d0;
+}
+
+.model-checkbox-item input {
+  margin-right: 10px;
+  accent-color: #8b7355;
+  cursor: pointer;
+}
+
+.model-checkbox-item label {
+  cursor: pointer;
+  flex: 1;
+  font-size: 14px;
+}
+
+.model-checkbox-item.selected {
+  background: #e8e0d0;
+}
+
 .filter-actions {
   display: flex;
   flex-direction: column;

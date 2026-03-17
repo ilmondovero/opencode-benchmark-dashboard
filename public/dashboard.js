@@ -313,28 +313,84 @@
         showModal(target.dataset.key);
       }
     });
-    function populateModelSelect() {
-      const modelSelect2 = document.getElementById("modelSelect");
-      if (!modelSelect2) return;
-      modelSelect2.innerHTML = models.map((m) => '<option value="' + m + '">' + m + "</option>").join("");
+    let selectedModels = /* @__PURE__ */ new Set();
+    function populateModelCheckboxList(filter = "") {
+      const list = document.getElementById("modelCheckboxList");
+      if (!list) return;
+      const filteredModels = models.filter((m) => m.toLowerCase().includes(filter.toLowerCase()));
+      list.innerHTML = filteredModels.map((m) => {
+        const isSelected = selectedModels.has(m);
+        return '<div class="model-checkbox-item' + (isSelected ? " selected" : "") + '"><input type="checkbox" value="' + m + '"' + (isSelected ? " checked" : "") + ' id="model-check-' + m.replace(/[^a-zA-Z0-9]/g, "_") + '"><label for="model-check-' + m.replace(/[^a-zA-Z0-9]/g, "_") + '">' + m + "</label></div>";
+      }).join("");
+      list.querySelectorAll('input[type="checkbox"]').forEach((cb) => {
+        cb.addEventListener("change", (e) => {
+          const target = e.target;
+          if (target.checked) {
+            selectedModels.add(target.value);
+          } else {
+            selectedModels.delete(target.value);
+          }
+          updateDropdownLabel();
+          applyFilter();
+        });
+      });
+    }
+    function updateDropdownLabel() {
+      const label = document.getElementById("modelDropdownLabel");
+      if (!label) return;
+      if (selectedModels.size === 0) {
+        label.textContent = "Select models...";
+      } else if (selectedModels.size === 1) {
+        label.textContent = Array.from(selectedModels)[0];
+      } else {
+        label.textContent = selectedModels.size + " models selected";
+      }
+    }
+    function setupModelFilter() {
+      const trigger = document.getElementById("modelDropdownTrigger");
+      const dropdown = document.getElementById("modelDropdown");
+      const filterInput = document.getElementById("modelFilterInput");
+      const selectAllBtn = document.getElementById("selectAllModels");
+      const clearAllBtn = document.getElementById("clearAllModels");
+      if (!trigger || !dropdown) return;
+      trigger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle("open");
+        if (dropdown.classList.contains("open")) {
+          filterInput?.focus();
+        }
+      });
+      document.addEventListener("click", (e) => {
+        if (!dropdown.contains(e.target)) {
+          dropdown.classList.remove("open");
+        }
+      });
+      filterInput?.addEventListener("input", (e) => {
+        const target = e.target;
+        populateModelCheckboxList(target.value);
+      });
+      selectAllBtn?.addEventListener("click", () => {
+        models.forEach((m) => selectedModels.add(m));
+        populateModelCheckboxList(filterInput ? filterInput.value : "");
+        updateDropdownLabel();
+        applyFilter();
+      });
+      clearAllBtn?.addEventListener("click", () => {
+        selectedModels.clear();
+        populateModelCheckboxList(filterInput ? filterInput.value : "");
+        updateDropdownLabel();
+        applyFilter();
+      });
+      populateModelCheckboxList();
+      updateDropdownLabel();
     }
     function applyFilter() {
-      const modelSelect2 = document.getElementById("modelSelect");
-      const selected = Array.from(modelSelect2?.selectedOptions || []).map((opt) => opt.value).filter((v) => v);
-      const selectedModels = selected.length > 0 ? selected : [];
-      renderHeatmap(selectedModels);
-      createChart(selectedModels);
-      updateStatsFiltered(selectedModels);
+      const selected = selectedModels.size > 0 ? Array.from(selectedModels) : [];
+      renderHeatmap(selected);
+      createChart(selected);
+      updateStatsFiltered(selected);
     }
     const modelSelect = document.getElementById("modelSelect");
-    const filterBtn = document.getElementById("filterBtn");
-    filterBtn?.addEventListener("click", applyFilter);
-    const clearFilterBtn = document.getElementById("clearFilterBtn");
-    clearFilterBtn?.addEventListener("click", () => {
-      if (modelSelect) {
-        Array.from(modelSelect.options).forEach((opt) => opt.selected = false);
-      }
-    });
     const refreshBtn = document.getElementById("refreshBtn");
     refreshBtn?.addEventListener("click", async () => {
       const btn = refreshBtn;
@@ -344,11 +400,9 @@
         const fresh = await res.json();
         window.modelData = fresh.models;
         window.models = Object.keys(fresh.models).sort();
-        populateModelSelect();
-        const modelSelectRefresh = document.getElementById("modelSelect");
-        if (modelSelectRefresh) {
-          Array.from(modelSelectRefresh.options).forEach((opt) => opt.selected = false);
-        }
+        selectedModels.clear();
+        populateModelCheckboxList();
+        updateDropdownLabel();
         createChart();
         updateStats(fresh);
         renderHeatmap([]);
@@ -358,7 +412,7 @@
       btn.textContent = "Refresh";
     });
     await loadData();
-    populateModelSelect();
+    setupModelFilter();
     createChart();
     updateStats({ runs: [], models });
     renderHeatmap();
