@@ -472,8 +472,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     selectAllBtn?.addEventListener('click', () => {
-      models.forEach(m => selectedModels.add(m));
-      populateModelCheckboxList(filterInput ? (filterInput as HTMLInputElement).value : '');
+      const filterValue = filterInput ? (filterInput as HTMLInputElement).value : '';
+      const filteredModels = models.filter(m => m.toLowerCase().includes(filterValue.toLowerCase()));
+      filteredModels.forEach(m => selectedModels.add(m));
+      populateModelCheckboxList(filterValue);
       updateDropdownLabel();
       applyFilter();
     });

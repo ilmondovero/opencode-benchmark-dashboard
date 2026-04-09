@@ -7,6 +7,9 @@ node_modules/
 # Build outputs
 dist/
 
+# Dashboard built JS (generated from TS)
+public/dashboard.js
+
 # OS files
 .DS_Store
 
