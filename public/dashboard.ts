@@ -498,34 +498,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     updateStatsFiltered(selected);
   }
 
-  const modelSelect = document.getElementById('modelSelect');
 
-  // Refresh button
-  const refreshBtn = document.getElementById('refreshBtn');
-  refreshBtn?.addEventListener('click', async () => {
-    const btn = refreshBtn;
-    btn.textContent = 'Loading...';
-    try {
-      const res = await fetch('/api/refresh');
-      const fresh = await res.json() as { runs: unknown[]; models: Record<string, ModelData> };
-      
-      // Update global variables
-      (window as unknown as { modelData: Record<string, ModelData> }).modelData = fresh.models;
-      (window as unknown as { models: string[] }).models = Object.keys(fresh.models).sort();
-      
-      // Update filter dropdown
-      selectedModels.clear();
-      populateModelCheckboxList();
-      updateDropdownLabel();
-      
-      createChart();
-      updateStats(fresh);
-      renderHeatmap([]);
-    } catch (e) {
-      console.error('Refresh failed:', e);
-    }
-    btn.textContent = 'Refresh';
-  });
 
   // Initial render - wait for data to load first
   await loadData();
