@@ -81,6 +81,7 @@ function renderHeatmap(selectedModels: string[] = []): void {
 
   const winners: Record<string, { model: string; latencyMs: number }> = {};
   const modelWins: Record<string, number> = {};
+  const modelCorrect: Record<string, number> = {};
 
   for (const tc of testCases) {
     let fastest: { model: string; latencyMs: number } | null = null;
@@ -88,8 +89,11 @@ function renderHeatmap(selectedModels: string[] = []): void {
       const result = modelData[m].allResults.find(r => r.testCase === tc);
       if (result) {
         const isCorrect = result.verification ? result.verification.correct : result.correct;
-        if (isCorrect && (!fastest || result.latencyMs < fastest.latencyMs)) {
-          fastest = { model: m, latencyMs: result.latencyMs };
+        if (isCorrect) {
+          modelCorrect[m] = (modelCorrect[m] || 0) + 1;
+          if (!fastest || result.latencyMs < fastest.latencyMs) {
+            fastest = { model: m, latencyMs: result.latencyMs };
+          }
         }
       }
     }
@@ -131,7 +135,7 @@ function renderHeatmap(selectedModels: string[] = []): void {
     const totalLatency = data.allResults.reduce((sum, r) => sum + r.latencyMs, 0);
     const totalSeconds = Math.round(totalLatency / 1000);
     
-    return '<tr><td class="model-name">' + m + ' <span class="win-count">(' + (modelWins[m] || 0) + ' wins, ' + totalSeconds + 's)</span></td>' + cells.join('') + '</tr>';
+    return '<tr><td class="model-name">' + m + ' <span class="win-count">(' + (modelCorrect[m] || 0) + '/' + testCases.length + ' correct, ' + (modelWins[m] || 0) + ' wins, ' + totalSeconds + 's)</span></td>' + cells.join('') + '</tr>';
   }).join('');
 }
 
