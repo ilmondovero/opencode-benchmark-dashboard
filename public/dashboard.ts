@@ -15,6 +15,7 @@ interface ModelResult {
   output: string;
   expected: string;
   verification?: LLMVerification;
+  prompt?: string;
 }
 
 interface ModelData {
@@ -154,8 +155,19 @@ function showModal(key: string): void {
   const reasoning = verification?.reasoning || '';
   const verifiedBy = verification?.verifiedBy || '';
   const timestamp = verification?.timestamp || '';
+  const prompt = r.prompt || '';
   
   modalBody.innerHTML = `
+    ${prompt ? `
+    <div class="modal-section">
+      <h4>
+        <button class="collapsible-toggle" data-target="promptContent" aria-expanded="false">▶ Prompt</button>
+      </h4>
+      <div id="promptContent" class="collapsible-content" style="display: none;">
+        <pre>${escapeHtml(prompt)}</pre>
+      </div>
+    </div>
+    ` : ''}
     <div class="modal-section ${matchClass}">
       <h4>Actual Output</h4>
       <pre>${escapeHtml(r.output || '')}</pre>
@@ -177,6 +189,20 @@ function showModal(key: string): void {
     </div>
     ` : ''}
   `;
+
+  modalBody.querySelectorAll('.collapsible-toggle').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const target = e.currentTarget as HTMLButtonElement;
+      const contentId = target.dataset.target;
+      const content = document.getElementById(contentId);
+      if (content) {
+        const isExpanded = target.getAttribute('aria-expanded') === 'true';
+        target.setAttribute('aria-expanded', String(!isExpanded));
+        target.textContent = (isExpanded ? '▶' : '▼') + ' Prompt';
+        content.style.display = isExpanded ? 'none' : 'block';
+      }
+    });
+  });
   
   const modalOverlay = document.getElementById('modalOverlay');
   if (modalOverlay) modalOverlay.classList.add('active');

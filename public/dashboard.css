@@ -504,3 +504,21 @@ input {
 .modal-section.no-match pre {
   border-left: 4px solid #dc3545;
 }
+
+.collapsible-toggle {
+  background: none;
+  border: none;
+  color: #5c4b37;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0;
+  font-weight: 600;
+}
+
+.collapsible-toggle:hover {
+  color: #3d2e1f;
+}
+
+.collapsible-content pre {
+  margin-top: 8px;
+}

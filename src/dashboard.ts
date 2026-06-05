@@ -5,7 +5,16 @@ import { sanitizeModelName } from "./utils.ts";
 
 const RESULTS_DIR = resolve("./results");
 const PUBLIC_DIR = resolve("./public");
+const PROMPTS_DIR = resolve("./prompts");
 const PORT = 3000;
+
+function loadPrompt(testCase: string): string | null {
+  const promptPath = join(PROMPTS_DIR, `${testCase}.txt`);
+  if (!existsSync(promptPath)) {
+    return null;
+  }
+  return readFileSync(promptPath, "utf-8").trim();
+}
 
 function getLatencyMs(result: RunSummary["results"][0]): number {
   if (result.latencyMs && result.latencyMs > 0) {
@@ -109,23 +118,25 @@ function loadModelData(): Map<string, ModelData> {
           modelData.totalFailed += stat.failed;
           modelData.avgLatency += stat.avgLatencyMs * stat.totalTests;
           
-          for (const result of run.results) {
-            if (result.model === stat.model) {
-              const isCorrect = result.llmVerification ? result.llmVerification.correct : result.correct;
-              const finalScore = result.llmVerification ? result.llmVerification.score : result.score;
-              const latency = getLatencyMs(result);
-              modelData.allResults.push({
-                testCase: result.testCase,
-                latencyMs: latency,
-                correct: isCorrect,
-                score: finalScore,
-                timestamp: result.timestamp,
-                output: result.output,
-                expected: result.expected,
-                verification: result.llmVerification
-              });
+            for (const result of run.results) {
+              if (result.model === stat.model) {
+                const isCorrect = result.llmVerification ? result.llmVerification.correct : result.correct;
+                const finalScore = result.llmVerification ? result.llmVerification.score : result.score;
+                const latency = getLatencyMs(result);
+                const prompt = loadPrompt(result.testCase);
+                modelData.allResults.push({
+                  testCase: result.testCase,
+                  latencyMs: latency,
+                  correct: isCorrect,
+                  score: finalScore,
+                  timestamp: result.timestamp,
+                  output: result.output,
+                  expected: result.expected,
+                  verification: result.llmVerification,
+                  prompt: prompt || undefined
+                });
+              }
             }
-          }
         }
       } else if (run.results) {
         for (const result of run.results) {
@@ -160,6 +171,7 @@ function loadModelData(): Map<string, ModelData> {
           const latency = getLatencyMs(result);
           modelData.avgLatency += latency;
           
+          const prompt = loadPrompt(result.testCase);
           modelData.allResults.push({
             testCase: result.testCase,
             latencyMs: latency,
@@ -168,7 +180,8 @@ function loadModelData(): Map<string, ModelData> {
             timestamp: result.timestamp,
             output: result.output,
             expected: result.expected,
-            verification: result.llmVerification
+            verification: result.llmVerification,
+            prompt: prompt || undefined
           });
         }
       }

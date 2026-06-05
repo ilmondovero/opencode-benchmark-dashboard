@@ -66,4 +66,5 @@ export interface ModelResult {
   correct: boolean;
   score: number;
   timestamp: string;
+  prompt?: string;
 }
