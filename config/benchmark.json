@@ -1,4 +1,4 @@
 {
   "timeout": 600000,
-  "evaluatorModel": "opencode/minimax-m2.5-free"
+  "evaluatorModel": "opencode/minimax-m3-free"
 }
