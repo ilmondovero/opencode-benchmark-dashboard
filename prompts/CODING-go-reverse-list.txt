@@ -1,0 +1,4 @@
+You are a Go developer. Output only code, do not explain.
+--
+Given `type ListNode struct { Val int; Next *ListNode }`, write a function
+reverseList(head *ListNode) *ListNode that reverses a singly linked list iteratively.

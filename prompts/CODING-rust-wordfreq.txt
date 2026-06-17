@@ -1,0 +1,4 @@
+You are a Rust developer. Output only code, do not explain.
+--
+Write fn word_freq(text: &str) -> std::collections::HashMap<String, usize>
+that counts occurrences of each whitespace-separated word (case-sensitive).

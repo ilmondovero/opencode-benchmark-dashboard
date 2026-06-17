@@ -1,0 +1,9 @@
+use std::collections::HashMap;
+
+fn word_freq(text: &str) -> HashMap<String, usize> {
+    let mut map = HashMap::new();
+    for w in text.split_whitespace() {
+        *map.entry(w.to_string()).or_insert(0) += 1;
+    }
+    map
+}

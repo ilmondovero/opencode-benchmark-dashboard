@@ -1,0 +1,2 @@
+Beth is 5 and Anna is 15.
+(Let Beth = b, Anna = 3b. 3b+5 = 2(b+5) => b = 5, so Anna = 15.)

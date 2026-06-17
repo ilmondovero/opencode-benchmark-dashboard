@@ -1,0 +1,4 @@
+Solve the problem. Give the final numeric answer clearly.
+--
+Anna is 3 times as old as Beth. In 5 years Anna will be twice as old as Beth.
+How old are Anna and Beth now?

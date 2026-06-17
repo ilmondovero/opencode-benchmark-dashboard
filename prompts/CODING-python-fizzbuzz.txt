@@ -1,0 +1,4 @@
+You are a Python developer. Output only code, do not explain.
+--
+Write a function fizzbuzz(n) that returns a list of strings for 1..n:
+"Fizz" if divisible by 3, "Buzz" if by 5, "FizzBuzz" if by both, otherwise the number as a string.

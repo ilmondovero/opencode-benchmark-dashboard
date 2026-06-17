@@ -1,0 +1,4 @@
+You write SQL (standard/ANSI). Output only the query, do not explain.
+--
+Table employees(id, salary). Return the second highest distinct salary.
+If it does not exist, return NULL.

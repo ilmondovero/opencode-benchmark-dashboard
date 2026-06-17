@@ -1,0 +1,6 @@
+Extract structured data. Output only a JSON object, no explanation.
+--
+From this text produce JSON with keys "name", "email", "total" (number):
+
+Invoice for Maria Rossi (maria.rossi@example.com).
+Items total: EUR 1.250,50. Thank you.

@@ -1,0 +1,5 @@
+{
+  "name": "Maria Rossi",
+  "email": "maria.rossi@example.com",
+  "total": 1250.50
+}

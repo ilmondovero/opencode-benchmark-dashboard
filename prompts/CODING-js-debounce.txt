@@ -1,0 +1,4 @@
+You are a JavaScript developer. Output only code, do not explain.
+--
+Implement a debounce(fn, delay) function that returns a debounced version of fn:
+calls are delayed by `delay` ms and reset on each new call.

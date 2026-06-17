@@ -1,0 +1,7 @@
+You are a Python developer. Output only the corrected function, do not explain.
+--
+Fix the bug in this function so each call starts with an empty list:
+
+def add_item(item, items=[]):
+    items.append(item)
+    return items
