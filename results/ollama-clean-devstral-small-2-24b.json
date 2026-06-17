@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-clean-devstral-small-2-24b",
+  "timestamp": "2026-06-17T08:07:26.797Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:07:26.797Z",
+      "model": "ollama-clean/devstral-small-2:24b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 9363,
+      "correct": false,
+      "score": 0,
+      "output": "C:\\Users\\dario\\AppData\\Local\\Temp\\opencode-bench-9rJY72\\longer.rs\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:07:34.670Z",
+        "correct": false,
+        "score": 0,
+        "reasoning": "The model output only provides a file path and does not include any Rust code implementing the `longer` function with lifetimes as required. It fails to answer the conversion task."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-clean/devstral-small-2:24b",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 9363,
+      "accuracy": 0
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-clean-nemotron-3-nano-30b",
+  "timestamp": "2026-06-17T08:14:29.155Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:14:29.155Z",
+      "model": "ollama-clean/nemotron-3-nano:30b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 7419,
+      "correct": false,
+      "score": 0,
+      "output": "fn longer<'a>(a: &'a str, b: &'a str) -> &'a str { if a.len() >= b.len() { a } else { b } }\nfn main() { println!(\"{}\", longer(\"gatto\",\"cammello\")); }\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:14:36.835Z",
+        "correct": true,
+        "score": 1,
+        "reasoning": "The model provides a Rust implementation with the required lifetime annotation, correct length comparison, and a main function printing the result, matching the expected behavior despite formatting differences."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-clean/nemotron-3-nano:30b",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 7419,
+      "accuracy": 0
+    }
+  ]
+}

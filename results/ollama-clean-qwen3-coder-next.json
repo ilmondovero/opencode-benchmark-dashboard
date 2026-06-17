@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-clean-qwen3-coder-next",
+  "timestamp": "2026-06-17T08:16:28.359Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T09:15:51.872Z",
+      "model": "ollama-clean/qwen3-coder-next",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 5605,
+      "correct": false,
+      "score": 0,
+      "output": "```rust\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    let result = longer(\"gatto\", \"cammello\");\n    println!(\"{}\", result); // => cammello\n}\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T09:15:59.091Z",
+        "correct": true,
+        "score": 1,
+        "reasoning": "The model output correctly implements the Rust version with appropriate lifetimes and produces the same behavior, merely storing the result in a variable before printing, which is functionally equivalent to the expected code."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-clean/qwen3-coder-next",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 5605,
+      "accuracy": 0
+    }
+  ]
+}

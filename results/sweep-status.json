@@ -1,0 +1,572 @@
+{
+  "generatedAt": "2026-06-17T09:26:04.000Z",
+  "task": "CODING-typescript-rust",
+  "judge": "ollama-clean/gpt-oss:120b",
+  "totalRows": 70,
+  "byVariant": {
+    "clean": 35,
+    "cloud": 35
+  },
+  "rows": [
+    {
+      "variant": "clean",
+      "model": "deepseek-v3.1:671b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 30350,
+      "correct": false,
+      "score": 0
+    },
+    {
+      "variant": "clean",
+      "model": "deepseek-v3.2",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 13537,
+      "correct": false,
+      "score": 0
+    },
+    {
+      "variant": "clean",
+      "model": "deepseek-v4-flash",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 19250,
+      "correct": true,
+      "score": 0.9
+    },
+    {
+      "variant": "clean",
+      "model": "deepseek-v4-pro",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 12412,
+      "correct": false,
+      "score": 0.75
+    },
+    {
+      "variant": "clean",
+      "model": "devstral-2:123b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 9018,
+      "correct": false,
+      "score": 0
+    },
+    {
+      "variant": "clean",
+      "model": "devstral-small-2:24b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 9363,
+      "correct": false,
+      "score": 0
+    },
+    {
+      "variant": "clean",
+      "model": "gemini-3-flash-preview",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 12889,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "clean",
+      "model": "gemma3:12b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 15582,
+      "correct": false,
+      "score": 0
+    },
+    {
+      "variant": "clean",
+      "model": "gemma3:27b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 9380,
+      "correct": false,
+      "score": 0.5
+    },
+    {
+      "variant": "clean",
+      "model": "gemma3:4b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 12901,
+      "correct": false,
+      "score": 0
+    },
+    {
+      "variant": "clean",
+      "model": "gemma4:31b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 5870,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "clean",
+      "model": "glm-4.7",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 15391,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "clean",
+      "model": "glm-5",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 8197,
+      "correct": false,
+      "score": 0
+    },
+    {
+      "variant": "clean",
+      "model": "glm-5.1",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 5960,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "clean",
+      "model": "glm-5.2",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 21895,
+      "correct": false,
+      "score": 0.75
+    },
+    {
+      "variant": "clean",
+      "model": "gpt-oss:120b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 6817,
+      "correct": false,
+      "score": 0
+    },
+    {
+      "variant": "clean",
+      "model": "gpt-oss:20b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 5285,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "clean",
+      "model": "kimi-k2.5",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 15081,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "clean",
+      "model": "kimi-k2.6",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 14112,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "clean",
+      "model": "kimi-k2.7-code",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 5994,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "clean",
+      "model": "minimax-m2.1",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 7466,
+      "correct": false,
+      "score": 0.8
+    },
+    {
+      "variant": "clean",
+      "model": "minimax-m2.5",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 7324,
+      "correct": false,
+      "score": 0.85
+    },
+    {
+      "variant": "clean",
+      "model": "minimax-m2.7",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 10594,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "clean",
+      "model": "minimax-m3",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 9969,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "clean",
+      "model": "ministral-3:14b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 7437,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "clean",
+      "model": "ministral-3:3b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 10680,
+      "correct": false,
+      "score": 0.4
+    },
+    {
+      "variant": "clean",
+      "model": "ministral-3:8b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 11747,
+      "correct": false,
+      "score": 0.6
+    },
+    {
+      "variant": "clean",
+      "model": "mistral-large-3:675b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 6481,
+      "correct": false,
+      "score": 0.5
+    },
+    {
+      "variant": "clean",
+      "model": "nemotron-3-nano:30b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 7419,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "clean",
+      "model": "nemotron-3-super",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 17038,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "clean",
+      "model": "nemotron-3-ultra",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 59360,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "clean",
+      "model": "qwen3-coder-next",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 5605,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "clean",
+      "model": "qwen3-coder:480b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 8696,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "clean",
+      "model": "qwen3.5:397b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 7077,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "clean",
+      "model": "rnj-1:8b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 3427,
+      "correct": false,
+      "score": 0
+    },
+    {
+      "variant": "cloud",
+      "model": "deepseek-v3.1:671b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 94007,
+      "correct": false,
+      "score": 0
+    },
+    {
+      "variant": "cloud",
+      "model": "deepseek-v3.2",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 59411,
+      "correct": true,
+      "score": 0.9
+    },
+    {
+      "variant": "cloud",
+      "model": "deepseek-v4-flash",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 36618,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "cloud",
+      "model": "deepseek-v4-pro",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 45695,
+      "correct": false,
+      "score": 0
+    },
+    {
+      "variant": "cloud",
+      "model": "devstral-2:123b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 59777,
+      "correct": false,
+      "score": 0
+    },
+    {
+      "variant": "cloud",
+      "model": "devstral-small-2:24b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 67746,
+      "correct": true,
+      "score": 0.9
+    },
+    {
+      "variant": "cloud",
+      "model": "gemini-3-flash-preview",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 61095,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "cloud",
+      "model": "gemma3:12b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 44598,
+      "correct": false,
+      "score": 0.3
+    },
+    {
+      "variant": "cloud",
+      "model": "gemma3:27b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 49851,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "cloud",
+      "model": "gemma3:4b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 50682,
+      "correct": false,
+      "score": 0
+    },
+    {
+      "variant": "cloud",
+      "model": "gemma4:31b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 51688,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "cloud",
+      "model": "glm-4.7",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 43697,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "cloud",
+      "model": "glm-5",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 67204,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "cloud",
+      "model": "glm-5.1",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 47121,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "cloud",
+      "model": "glm-5.2",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 94738,
+      "correct": true,
+      "score": 0.9
+    },
+    {
+      "variant": "cloud",
+      "model": "gpt-oss:120b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 52112,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "cloud",
+      "model": "gpt-oss:20b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 54717,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "cloud",
+      "model": "kimi-k2.5",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 76456,
+      "correct": false,
+      "score": 0
+    },
+    {
+      "variant": "cloud",
+      "model": "kimi-k2.6",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 73659,
+      "correct": false,
+      "score": 0
+    },
+    {
+      "variant": "cloud",
+      "model": "kimi-k2.7-code",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 102725,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "cloud",
+      "model": "minimax-m2.1",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 61232,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "cloud",
+      "model": "minimax-m2.5",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 63991,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "cloud",
+      "model": "minimax-m2.7",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 79035,
+      "correct": false,
+      "score": 0
+    },
+    {
+      "variant": "cloud",
+      "model": "minimax-m3",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 79949,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "cloud",
+      "model": "ministral-3:14b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 65090,
+      "correct": false,
+      "score": 0.7
+    },
+    {
+      "variant": "cloud",
+      "model": "ministral-3:3b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 53756,
+      "correct": false,
+      "score": 0.3
+    },
+    {
+      "variant": "cloud",
+      "model": "ministral-3:8b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 39605,
+      "correct": false,
+      "score": 0.5
+    },
+    {
+      "variant": "cloud",
+      "model": "mistral-large-3:675b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 42534,
+      "correct": false,
+      "score": 0
+    },
+    {
+      "variant": "cloud",
+      "model": "nemotron-3-nano:30b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 41252,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "cloud",
+      "model": "nemotron-3-super",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 89911,
+      "correct": true,
+      "score": 0.9
+    },
+    {
+      "variant": "cloud",
+      "model": "nemotron-3-ultra",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 69660,
+      "correct": false,
+      "score": 0.8
+    },
+    {
+      "variant": "cloud",
+      "model": "qwen3-coder-next",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 94339,
+      "correct": false,
+      "score": 0
+    },
+    {
+      "variant": "cloud",
+      "model": "qwen3-coder:480b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 40789,
+      "correct": false,
+      "score": 0.7
+    },
+    {
+      "variant": "cloud",
+      "model": "qwen3.5:397b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 59165,
+      "correct": true,
+      "score": 1
+    },
+    {
+      "variant": "cloud",
+      "model": "rnj-1:8b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 34642,
+      "correct": false,
+      "score": 0
+    }
+  ]
+}

@@ -34,7 +34,7 @@ interface ModelData {
   allResults: (ModelResult & { output: string; expected: string; verification?: LLMVerification })[];
 }
 
-function loadAllRuns(): DashboardData {
+export function loadAllRuns(): DashboardData {
   const runs: RunSummary[] = [];
   const models = new Set<string>();
   const testCases = new Set<string>();
@@ -82,7 +82,7 @@ function loadAllRuns(): DashboardData {
   };
 }
 
-function loadModelData(): Map<string, ModelData> {
+export function loadModelData(): Map<string, ModelData> {
   const modelMap = new Map<string, ModelData>();
 
   if (!existsSync(RESULTS_DIR)) {
@@ -280,4 +280,4 @@ async function startDashboard() {
   console.log("Press Ctrl+C to stop\n");
 }
 
-startDashboard();
+if (import.meta.main) startDashboard();

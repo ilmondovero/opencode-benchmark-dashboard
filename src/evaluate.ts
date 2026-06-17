@@ -1,8 +1,9 @@
-import { readdirSync, readFileSync, writeFileSync, existsSync, statSync } from "fs";
+import { readdirSync, readFileSync, writeFileSync, existsSync, statSync, mkdtempSync, rmSync } from "fs";
 import { resolve, join } from "path";
+import { tmpdir } from "os";
 import type { BenchmarkConfig, BenchmarkResult, RunSummary } from "./types.ts";
 import { loadConfig } from "./config.ts";
-import { sanitizeModelName, ensureDir, parseArgs, checkOpencodeCli, RESULTS_DIR, SOLUTIONS_DIR, levenshteinDistance, normalizeCode, isRunSummary } from "./utils.ts";
+import { sanitizeModelName, ensureDir, parseArgs, checkOpencodeCli, RESULTS_DIR, SOLUTIONS_DIR, levenshteinDistance, normalizeCode, isRunSummary, resolveOpencodeBin } from "./utils.ts";
 
 export interface EvaluationResult {
   correct: boolean;
@@ -273,8 +274,10 @@ async function callLLM(prompt: string, model: string, timeout: number = 120000):
   score: number;
   reasoning: string;
 } | null> {
+  const sandbox = mkdtempSync(join(tmpdir(), "opencode-judge-"));
   try {
-    const proc = Bun.spawn(["opencode", "run", "--model", model, prompt], {
+    const proc = Bun.spawn([resolveOpencodeBin(), "run", "--model", model, prompt], {
+      cwd: sandbox,
       env: { ...process.env, OPENCODE_MODEL: model },
       stdout: "pipe",
       stderr: "pipe",
@@ -303,8 +306,8 @@ async function callLLM(prompt: string, model: string, timeout: number = 120000):
         throw new Error("Timeout");
       }
       
-      const hasError = stderr.includes("Error:") || stderr.includes("error:") || exitCode !== 0;
-      if (!hasError) {
+      // opencode scrive diagnostica su stderr anche in caso di successo: si usa l'exit code.
+      if (exitCode === 0) {
         return stdout;
       } else {
         throw new Error(stderr || `Exit code: ${exitCode}`);
@@ -384,6 +387,8 @@ async function callLLM(prompt: string, model: string, timeout: number = 120000):
   } catch (e: any) {
     console.error("❌ LLM call failed:", e.stack || e.message || String(e));
     return null;
+  } finally {
+    try { rmSync(sandbox, { recursive: true, force: true }); } catch {}
   }
 }
 

@@ -1,5 +1,6 @@
-import { existsSync, mkdirSync, readFileSync } from "fs";
-import { resolve, join } from "path";
+import { existsSync, mkdirSync, readFileSync, mkdtempSync, rmSync } from "fs";
+import { resolve, join, dirname } from "path";
+import { tmpdir } from "os";
 import type { RunSummary } from "./types.ts";
 
 export const SOLUTIONS_DIR = resolve("./solutions");
@@ -65,9 +66,13 @@ export async function runOpencode(
     return { output: "", error: `Invalid model name: ${model}` };
   }
 
+  // Esegue opencode in una sandbox usa-e-getta: i tool agentici del modello possono
+  // scrivere/cancellare file solo lì, mai nel repo del benchmark.
+  const sandbox = mkdtempSync(join(tmpdir(), "opencode-bench-"));
   try {
     const startTime = Date.now();
-    const proc = Bun.spawn(["opencode", "run", "--model", model, prompt], {
+    const proc = Bun.spawn([resolveOpencodeBin(), "run", "--model", model, prompt], {
+      cwd: sandbox,
       env: { ...process.env, OPENCODE_MODEL: model },
       stdout: "pipe",
       stderr: "pipe"
@@ -95,8 +100,9 @@ export async function runOpencode(
         return { output: "", error: "Timeout", latencyMs };
       }
       
-      const hasError = stderr.includes("Error:") || stderr.includes("error:") || exitCode !== 0;
-      if (!hasError) {
+      // opencode scrive diagnostica/reasoning su stderr anche in caso di successo:
+      // ci si fida del solo exit code, non di substring "error:" nello stderr.
+      if (exitCode === 0) {
         return { output: stdout, error: undefined, latencyMs };
       } else {
         return { output: stdout, error: stderr || `Exit code: ${exitCode}`, latencyMs };
@@ -106,6 +112,8 @@ export async function runOpencode(
     return await Promise.race([outputPromise, timeoutPromise]);
   } catch (e: any) {
     return { output: "", error: e.message || String(e), latencyMs: 0 };
+  } finally {
+    try { rmSync(sandbox, { recursive: true, force: true }); } catch {}
   }
 }
 
@@ -134,14 +142,28 @@ export function parseArgs(args: string[]): ArgsResult {
   return result;
 }
 
-export async function checkOpencodeCli(): Promise<boolean> {
-  try {
-    const proc = Bun.spawn(["which", "opencode"], { stdout: "pipe" });
-    const output = await new Response(proc.stdout).text();
-    return output.trim().length > 0;
-  } catch {
-    return false;
+/**
+ * Resolve a directly-spawnable opencode executable.
+ * On Windows the npm shim is opencode.cmd/.ps1, which Bun.spawn cannot exec from
+ * a bare name (ENOENT); resolve the real native binary it wraps. Cross-platform.
+ */
+export function resolveOpencodeBin(): string {
+  const found = Bun.which("opencode");
+  if (found) {
+    const lower = found.toLowerCase();
+    if (lower.endsWith(".cmd") || lower.endsWith(".ps1")) {
+      const exe = join(dirname(found), "node_modules", "opencode-ai", "bin", "opencode.exe");
+      if (existsSync(exe)) return exe;
+    } else {
+      return found;
+    }
   }
+  return found ?? "opencode";
+}
+
+export async function checkOpencodeCli(): Promise<boolean> {
+  // Cross-platform lookup: `which` does not exist on native Windows.
+  return Bun.which("opencode") !== null;
 }
 
 /**

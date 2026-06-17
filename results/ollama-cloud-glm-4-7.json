@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-cloud-glm-4-7",
+  "timestamp": "2026-06-17T08:29:34.502Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:29:34.502Z",
+      "model": "ollama-cloud/glm-4.7",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 43697,
+      "correct": false,
+      "score": 0,
+      "output": "```rust\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:29:41.113Z",
+        "correct": true,
+        "score": 1,
+        "reasoning": "The model's output reproduces the exact Rust translation with the required lifetime annotation and a main function that prints the result, matching the expected answer precisely."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-cloud/glm-4.7",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 43697,
+      "accuracy": 0
+    }
+  ]
+}

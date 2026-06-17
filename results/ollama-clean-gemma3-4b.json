@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-clean-gemma3-4b",
+  "timestamp": "2026-06-17T08:08:53.616Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:08:53.616Z",
+      "model": "ollama-clean/gemma3:4b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 12901,
+      "correct": false,
+      "score": 0,
+      "output": "```json\n{\n  \"tool_calls\": [\n    {\n      \"tool\": \"webfetch\",\n      \"parameters\": {\n        \"url\": \"https://www.rust-lang.org/tools/cargo\",\n        \"format\": \"markdown\"\n      }\n    }\n  ]\n}\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:09:00.057Z",
+        "correct": false,
+        "score": 0,
+        "reasoning": "The model output does not provide the requested Rust implementation with lifetimes; instead it issues a webfetch tool call unrelated to the conversion task. Hence it fails to answer the prompt."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-clean/gemma3:4b",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 12901,
+      "accuracy": 0
+    }
+  ]
+}

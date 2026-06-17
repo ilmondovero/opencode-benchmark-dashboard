@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-cloud-ministral-3-3b",
+  "timestamp": "2026-06-17T08:48:23.872Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T09:19:56.255Z",
+      "model": "ollama-cloud/ministral-3:3b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 53756,
+      "correct": false,
+      "score": 0,
+      "output": "```rust\nfn longer(a: &str, b: &str) -> &str {\n    if a.len() >= b.len() { a } else { b }\n}\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T09:20:03.800Z",
+        "correct": false,
+        "score": 0.3,
+        "reasoning": "The function logic is correct, but it omits the required lifetime annotations and does not include the main function and println call as specified. Therefore it does not satisfy the task requirements."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-cloud/ministral-3:3b",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 53756,
+      "accuracy": 0
+    }
+  ]
+}

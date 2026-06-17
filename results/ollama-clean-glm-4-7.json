@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-clean-glm-4-7",
+  "timestamp": "2026-06-17T08:09:30.293Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:09:30.293Z",
+      "model": "ollama-clean/glm-4.7",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 15391,
+      "correct": false,
+      "score": 0,
+      "output": "```rust\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() { a } else { b }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\"));\n}\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:09:37.619Z",
+        "correct": true,
+        "score": 1,
+        "reasoning": "The model correctly implements the Rust function with lifetimes, matching the required signature and logic, and provides a main that prints the result. Minor differences like missing comment are irrelevant to correctness."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-clean/glm-4.7",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 15391,
+      "accuracy": 0
+    }
+  ]
+}

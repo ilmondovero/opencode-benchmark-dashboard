@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-cloud-nemotron-3-ultra",
+  "timestamp": "2026-06-17T08:57:21.132Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:57:21.132Z",
+      "model": "ollama-cloud/nemotron-3-ultra",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 69660,
+      "correct": false,
+      "score": 0,
+      "output": "```rust\nfn longer<'a, T>(a: &'a T, b: &'a T) -> &'a T\nwhere\n    T: ?Sized + std::ops::Deref<Target = str>,\n{\n    if a.len() >= b.len() { a } else { b }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}\n```\n\nOr more simply with `&str` directly:\n\n```rust\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() { a } else { b }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:57:33.314Z",
+        "correct": false,
+        "score": 0.8,
+        "reasoning": "The model provides a correct Rust implementation using lifetimes, matching the expected functionality. However, it adds explanatory text and an alternative generic version, which violates the instruction to not explain when not requested."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-cloud/nemotron-3-ultra",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 69660,
+      "accuracy": 0
+    }
+  ]
+}

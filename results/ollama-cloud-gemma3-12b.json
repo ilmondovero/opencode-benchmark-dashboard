@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-cloud-gemma3-12b",
+  "timestamp": "2026-06-17T08:25:36.521Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:25:36.521Z",
+      "model": "ollama-cloud/gemma3:12b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 44598,
+      "correct": false,
+      "score": 0,
+      "output": "```rust\nfn longer(a: &str, b: &str) -> &str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\"));\n}\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:25:52.159Z",
+        "correct": false,
+        "score": 0.3,
+        "reasoning": "The answer reproduces the function logic but omits the required lifetime annotation, resulting in code that will not compile. The task explicitly asked for lifetimes, so the output is incomplete and therefore incorrect."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-cloud/gemma3:12b",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 44598,
+      "accuracy": 0
+    }
+  ]
+}

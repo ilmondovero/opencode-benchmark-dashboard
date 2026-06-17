@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-clean-glm-5-2",
+  "timestamp": "2026-06-17T08:10:38.502Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:10:38.502Z",
+      "model": "ollama-clean/glm-5.2",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 21895,
+      "correct": false,
+      "score": 0,
+      "output": "```rust\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.length >= b.length { a } else { b }\n}\n\nfn main() {\n    println!(\"{:?}\", longer(\"gatto\", \"cammello\"))\n}\n```\n\nWait, `length` isn't a field in Rust. Let me use `.len()`.```rust\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() { a } else { b }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\"));\n}\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:10:52.294Z",
+        "correct": false,
+        "score": 0.75,
+        "reasoning": "The final Rust code correctly uses lifetimes and matches the expected functionality, but the answer also includes unnecessary explanatory text and an initial incorrect code snippet, violating the instruction to not provide explanations."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-clean/glm-5.2",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 21895,
+      "accuracy": 0
+    }
+  ]
+}

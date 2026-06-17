@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-clean-deepseek-v3-1-671b",
+  "timestamp": "2026-06-17T09:14:19.449Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T09:14:19.449Z",
+      "model": "ollama-clean/deepseek-v3.1:671b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 30350,
+      "correct": false,
+      "score": 0,
+      "output": "I'll convert this TypeScript function to Rust with proper lifetimes.\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T09:14:25.788Z",
+        "correct": false,
+        "score": 0,
+        "reasoning": "The model only responded with a description and did not provide the Rust code with lifetimes as required. It fails to deliver the expected function implementation and main example, so it does not satisfy the task."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-clean/deepseek-v3.1:671b",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 30350,
+      "accuracy": 0
+    }
+  ]
+}

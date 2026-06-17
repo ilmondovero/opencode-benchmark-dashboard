@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-cloud-qwen3-coder-480b",
+  "timestamp": "2026-06-17T08:59:13.546Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:59:13.546Z",
+      "model": "ollama-cloud/qwen3-coder:480b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 40789,
+      "correct": false,
+      "score": 0,
+      "output": "Here's the Rust equivalent of your TypeScript function, using lifetimes to ensure memory safety:\n\n```rust\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    let result = longer(\"gatto\", \"cammello\");\n    println!(\"{}\", result); // => cammello\n}\n```\n\nKey points:\n1. The lifetime parameter `'a` ensures both input strings and the return value share the same lifetime\n2. This prevents dangling references by guaranteeing the returned reference lives as long as the shorter-lived input\n3. The function signature explicitly declares that all references (`&str`) must be valid for the same lifetime `'a`\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:59:21.984Z",
+        "correct": false,
+        "score": 0.7,
+        "reasoning": "The Rust code correctly implements the requested function with lifetimes and matches the expected output, but the model added extra explanatory text after the code, violating the instruction to not explain when not requested."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-cloud/qwen3-coder:480b",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 40789,
+      "accuracy": 0
+    }
+  ]
+}

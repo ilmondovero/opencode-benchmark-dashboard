@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-clean-mistral-large-3-675b",
+  "timestamp": "2026-06-17T09:15:13.364Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T09:15:13.364Z",
+      "model": "ollama-clean/mistral-large-3:675b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 6481,
+      "correct": false,
+      "score": 0,
+      "output": "```rust\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() { a } else { b }\n}\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T09:15:20.551Z",
+        "correct": false,
+        "score": 0.5,
+        "reasoning": "The function definition with lifetimes is correct and matches the expected behavior, but the answer omits the required `main` function that demonstrates usage and prints the result, so it is incomplete."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-clean/mistral-large-3:675b",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 6481,
+      "accuracy": 0
+    }
+  ]
+}

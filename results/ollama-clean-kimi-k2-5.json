@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-clean-kimi-k2-5",
+  "timestamp": "2026-06-17T08:11:33.159Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:11:33.159Z",
+      "model": "ollama-clean/kimi-k2.5",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 15081,
+      "correct": false,
+      "score": 0,
+      "output": "```rust\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() { a } else { b }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:11:40.812Z",
+        "correct": true,
+        "score": 1,
+        "reasoning": "The model provides the exact Rust implementation with the required lifetime annotation and a main function that prints the longer string, matching the expected behavior and syntax."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-clean/kimi-k2.5",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 15081,
+      "accuracy": 0
+    }
+  ]
+}

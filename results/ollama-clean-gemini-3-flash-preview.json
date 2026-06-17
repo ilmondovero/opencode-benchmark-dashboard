@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-clean-gemini-3-flash-preview",
+  "timestamp": "2026-06-17T08:07:47.738Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:07:47.738Z",
+      "model": "ollama-clean/gemini-3-flash-preview",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 12889,
+      "correct": false,
+      "score": 0,
+      "output": "```rust\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\"));\n}\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:08:02.552Z",
+        "correct": true,
+        "score": 1,
+        "reasoning": "The output provides a correct Rust implementation with lifetimes matching the expected behavior, and the main function correctly calls and prints the result. The missing comment is non-essential, so the answer fully satisfies the task."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-clean/gemini-3-flash-preview",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 12889,
+      "accuracy": 0
+    }
+  ]
+}

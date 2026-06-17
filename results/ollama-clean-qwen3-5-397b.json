@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-clean-qwen3-5-397b",
+  "timestamp": "2026-06-17T08:16:57.615Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:16:57.615Z",
+      "model": "ollama-clean/qwen3.5:397b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 7077,
+      "correct": false,
+      "score": 0,
+      "output": "```rust\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\"));\n}\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:17:03.757Z",
+        "correct": true,
+        "score": 1,
+        "reasoning": "The answer provides the exact Rust implementation with the required lifetime annotation and correct logic, matching the expected functionality. The missing comment in the main function is irrelevant to correctness."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-clean/qwen3.5:397b",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 7077,
+      "accuracy": 0
+    }
+  ]
+}

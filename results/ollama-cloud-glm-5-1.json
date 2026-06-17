@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-cloud-glm-5-1",
+  "timestamp": "2026-06-17T08:31:42.401Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:31:42.401Z",
+      "model": "ollama-cloud/glm-5.1",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 47121,
+      "correct": false,
+      "score": 0,
+      "output": "```rust\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() { a } else { b }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:31:54.395Z",
+        "correct": true,
+        "score": 1,
+        "reasoning": "The model output provides the exact Rust implementation with the required lifetime annotation, correct logic, and a matching main function, fully satisfying the task."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-cloud/glm-5.1",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 47121,
+      "accuracy": 0
+    }
+  ]
+}

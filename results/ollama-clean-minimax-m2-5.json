@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-clean-minimax-m2-5",
+  "timestamp": "2026-06-17T08:12:37.949Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:12:37.949Z",
+      "model": "ollama-clean/minimax-m2.5",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 7324,
+      "correct": false,
+      "score": 0,
+      "output": "```rust\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() { a } else { b }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\"));\n}\n```\n\nOutput: `cammello`\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:12:47.414Z",
+        "correct": false,
+        "score": 0.85,
+        "reasoning": "The Rust code correctly implements the conversion with lifetimes and matches the expected functionality. However, the model added an extra explanatory line \"Output: `cammello`\", which violates the instruction to not explain when not requested."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-clean/minimax-m2.5",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 7324,
+      "accuracy": 0
+    }
+  ]
+}

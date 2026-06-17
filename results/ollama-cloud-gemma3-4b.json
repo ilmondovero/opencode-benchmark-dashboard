@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-cloud-gemma3-4b",
+  "timestamp": "2026-06-17T08:27:43.296Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:27:43.296Z",
+      "model": "ollama-cloud/gemma3:4b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 50682,
+      "correct": false,
+      "score": 0,
+      "output": "```rust\nfn longer<T>(a: &[T], b: &[T]) -> &[T] {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    let a = \"gatto\";\n    let b = \"cammello\";\n    println!(\"{}\", longer(a, b));\n}\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:27:53.323Z",
+        "correct": false,
+        "score": 0,
+        "reasoning": "The answer does not use explicit lifetimes as required and the function signature is incorrect for string inputs; it expects a slice of generic items, causing a type mismatch with `&str`. Therefore it fails to meet the task specifications."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-cloud/gemma3:4b",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 50682,
+      "accuracy": 0
+    }
+  ]
+}

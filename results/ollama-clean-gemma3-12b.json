@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-clean-gemma3-12b",
+  "timestamp": "2026-06-17T08:08:18.506Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:08:18.506Z",
+      "model": "ollama-clean/gemma3:12b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 15582,
+      "correct": false,
+      "score": 0,
+      "output": "```tool_code\n[\n  {\n    \"type\": \"function\",\n    \"function\": {\n      \"name\": \"write\",\n      \"description\": \"Writes a file to the local filesystem.\\n\\nUsage:\\n- This tool will overwrite the existing file if there is one at the provided path.\\n- If this is an existing file, you MUST use the Read tool first to read the file's contents. This tool will fail if you did not read the file first.\\n- ALWAYS prefer editing existing files in the codebase. NEVER write new files unless explicitly required.\\n- NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.\\n- Only use emojis if the user explicitly requests it. Avoid writing emojis to files unless asked.\\n\",\n      \"parameters\": {\n        \"type\": \"object\",\n        \"required\": [\n          \"content\",\n          \"filePath\"\n        ],\n        \"properties\": {\n          \"content\": {\n            \"type\": \"string\",\n            \"description\": \"The content to write to the file\"\n          },\n          \"filePath\": {\n            \"type\": \"string\",\n            \"description\": \"The absolute path to the file to write (must be absolute, not relative)\"\n          }\n        }\n      }\n    }\n  }\n]\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:08:24.254Z",
+        "correct": false,
+        "score": 0,
+        "reasoning": "The model output provides a tool schema for writing a file, not the required Rust code with lifetimes. It fails to answer the conversion task at all."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-clean/gemma3:12b",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 15582,
+      "accuracy": 0
+    }
+  ]
+}

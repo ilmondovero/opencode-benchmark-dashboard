@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-cloud-gpt-oss-20b",
+  "timestamp": "2026-06-17T08:35:39.867Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:35:39.867Z",
+      "model": "ollama-cloud/gpt-oss:20b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 54717,
+      "correct": false,
+      "score": 0,
+      "output": "```rust\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\"));\n}\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:35:47.641Z",
+        "correct": true,
+        "score": 1,
+        "reasoning": "The model output correctly implements the Rust function with appropriate lifetimes and reproduces the main function behavior. The only difference is the omission of an inline comment, which does not affect functional correctness."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-cloud/gpt-oss:20b",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 54717,
+      "accuracy": 0
+    }
+  ]
+}

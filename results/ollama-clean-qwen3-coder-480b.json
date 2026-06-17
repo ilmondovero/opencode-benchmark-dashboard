@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-clean-qwen3-coder-480b",
+  "timestamp": "2026-06-17T08:16:42.418Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:16:42.418Z",
+      "model": "ollama-clean/qwen3-coder:480b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 8696,
+      "correct": false,
+      "score": 0,
+      "output": "Here's the Rust equivalent of your TypeScript function:\n\n```rust\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}\n```\n\nKey points:\n1. Used lifetime parameter `'a` to ensure the returned reference lives as long as both input references\n2. Takes string slices (`&str`) instead of owned strings for efficiency\n3. Returns a string slice with the same lifetime as inputs\n4. Uses `len()` method to compare string lengths\n5. Includes a `main()` function demonstrating usage\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:16:50.084Z",
+        "correct": true,
+        "score": 1,
+        "reasoning": "The model produced the exact Rust implementation with the required lifetime annotation, matching the expected code and behavior. It includes the function and a main demonstration, fully satisfying the task."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-clean/qwen3-coder:480b",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 8696,
+      "accuracy": 0
+    }
+  ]
+}

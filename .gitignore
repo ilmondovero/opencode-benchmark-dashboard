@@ -1,6 +1,9 @@
 # Dependencies
 node_modules/
 
+# Stato locale OMC (non fa parte del progetto)
+.omc/
+
 # Ruff cache
 .ruff_cache/
 
@@ -13,11 +16,11 @@ public/dashboard.js
 # OS files
 .DS_Store
 
-# Test data (generated)
+# Raw per-model outputs (ridondanti: l'output e' gia' dentro results/*.json)
 solutions/
-results/
-prompts/
-prompts-answers/
+
+# Log runtime dello sweep (i dati .json restano tracciati e pubblici)
+results/*.log
 
 # Dashboard static (if generated)
 dashboard/

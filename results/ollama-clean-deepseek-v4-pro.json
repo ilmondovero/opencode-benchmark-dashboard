@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-clean-deepseek-v4-pro",
+  "timestamp": "2026-06-17T08:06:51.217Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:06:51.217Z",
+      "model": "ollama-clean/deepseek-v4-pro",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 12412,
+      "correct": false,
+      "score": 0,
+      "output": "Rust non è installato su questa macchina. Ecco il codice:\n\n```rust\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() { a } else { b }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\"));\n}\n```\n\nIl lifetime `'a` lega entrambi i parametri e il valore di ritorno: la funzione restituisce un riferimento a uno dei due input, senza allocazioni. Output: `cammello`.\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:07:01.128Z",
+        "correct": false,
+        "score": 0.75,
+        "reasoning": "The provided Rust code matches the expected implementation, including the correct lifetime annotation and main function. However, the response includes unnecessary explanatory text, violating the instruction not to explain when not requested."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-clean/deepseek-v4-pro",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 12412,
+      "accuracy": 0
+    }
+  ]
+}

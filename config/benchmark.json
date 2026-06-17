@@ -1,4 +1,4 @@
 {
   "timeout": 600000,
-  "evaluatorModel": "opencode/minimax-m3-free"
+  "evaluatorModel": "ollama-cloud/gpt-oss:120b"
 }

@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-clean-glm-5-1",
+  "timestamp": "2026-06-17T08:10:04.004Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:10:04.004Z",
+      "model": "ollama-clean/glm-5.1",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 5960,
+      "correct": false,
+      "score": 0,
+      "output": "```rust\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() { a } else { b }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\"));\n}\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:10:16.434Z",
+        "correct": true,
+        "score": 1,
+        "reasoning": "The model provides a Rust function with the appropriate lifetime annotations and a main that calls it, matching the expected semantics. The only minor difference is the missing comment, which is not required for correctness."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-clean/glm-5.1",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 5960,
+      "accuracy": 0
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-clean-ministral-3-3b",
+  "timestamp": "2026-06-17T09:14:57.849Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T09:14:57.849Z",
+      "model": "ollama-clean/ministral-3:3b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 10680,
+      "correct": false,
+      "score": 0,
+      "output": "The TypeScript function can be converted to Rust as follows:\n\n```rust\nfn longer(a: &str, b: &str) -> &str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => \"cammello\"\n}\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T09:15:06.729Z",
+        "correct": false,
+        "score": 0.4,
+        "reasoning": "The Rust code is functionally correct, but it omits the explicit lifetime annotation `'a` that the task explicitly required. Therefore it does not fully satisfy the specification."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-clean/ministral-3:3b",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 10680,
+      "accuracy": 0
+    }
+  ]
+}

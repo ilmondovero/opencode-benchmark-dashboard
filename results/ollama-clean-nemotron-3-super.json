@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-clean-nemotron-3-super",
+  "timestamp": "2026-06-17T08:14:51.992Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T09:15:37.762Z",
+      "model": "ollama-clean/nemotron-3-super",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 17038,
+      "correct": false,
+      "score": 0,
+      "output": "fn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() { a } else { b }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\"));\n}\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T09:15:46.055Z",
+        "correct": true,
+        "score": 1,
+        "reasoning": "The model outputs a Rust function with the required lifetime annotation and identical logic, and includes a matching main that prints the result. It fulfills the conversion request despite minor formatting differences."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-clean/nemotron-3-super",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 17038,
+      "accuracy": 0
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-cloud-gemini-3-flash-preview",
+  "timestamp": "2026-06-17T08:24:45.377Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:24:45.377Z",
+      "model": "ollama-cloud/gemini-3-flash-preview",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 61095,
+      "correct": false,
+      "score": 0,
+      "output": "```rust\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:24:51.770Z",
+        "correct": true,
+        "score": 1,
+        "reasoning": "The provided Rust code correctly implements the longer function with appropriate lifetimes and reproduces the expected main function. It matches the expected output exactly, fulfilling the task requirements."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-cloud/gemini-3-flash-preview",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 61095,
+      "accuracy": 0
+    }
+  ]
+}

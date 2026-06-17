@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-cloud-kimi-k2-6",
+  "timestamp": "2026-06-17T08:38:29.366Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:38:29.366Z",
+      "model": "ollama-cloud/kimi-k2.6",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 73659,
+      "correct": false,
+      "score": 0,
+      "output": "```rust\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() { a } else { b }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:38:42.918Z",
+        "correct": false,
+        "score": 0,
+        "reasoning": "Failed: LLM verification call failed"
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-cloud/kimi-k2.6",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 73659,
+      "accuracy": 0
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-cloud-minimax-m2-5",
+  "timestamp": "2026-06-17T08:42:47.278Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:42:47.278Z",
+      "model": "ollama-cloud/minimax-m2.5",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 63991,
+      "correct": false,
+      "score": 0,
+      "output": "```rust\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() { a } else { b }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:42:53.993Z",
+        "correct": true,
+        "score": 1,
+        "reasoning": "The output provides the exact Rust code with correct lifetime annotations, matching the expected functionality and format, without unnecessary explanation."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-cloud/minimax-m2.5",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 63991,
+      "accuracy": 0
+    }
+  ]
+}

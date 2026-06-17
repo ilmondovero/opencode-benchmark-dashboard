@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-clean-deepseek-v4-flash",
+  "timestamp": "2026-06-17T08:06:30.096Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:06:30.096Z",
+      "model": "ollama-clean/deepseek-v4-flash",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 19250,
+      "correct": false,
+      "score": 0,
+      "output": "Rust non è installato su questa macchina. Il file `main.rs` è stato scritto:\n\n```rust\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() { a } else { b }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\"));\n}\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:06:38.656Z",
+        "correct": true,
+        "score": 0.9,
+        "reasoning": "The response provides the exact Rust implementation with lifetimes and a main function matching the expected output, so it fulfills the core conversion task. It adds an unnecessary explanatory sentence about Rust not being installed, which slightly deviates from the 'no explanation' instruction, hence a minor penalty."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-clean/deepseek-v4-flash",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 19250,
+      "accuracy": 0
+    }
+  ]
+}

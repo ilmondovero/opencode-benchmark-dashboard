@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-cloud-deepseek-v3-2",
+  "timestamp": "2026-06-17T08:19:41.092Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T09:18:50.513Z",
+      "model": "ollama-cloud/deepseek-v3.2",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 59411,
+      "correct": false,
+      "score": 0,
+      "output": "<function_calls>\n<invoke name=\"write\">\n<parameter name=\"filePath\" string=\"true\">C:\\Users\\dario\\AppData\\Local\\Temp\\opencode-bench-bQEKUs\\longer.rs</parameter>\n<parameter name=\"content\" string=\"true\">fn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    let result = longer(\"gatto\", \"cammello\");\n    println!(\"{}\", result); // => cammello\n}</parameter>\n</invoke>\n</function_calls>\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T09:19:02.326Z",
+        "correct": true,
+        "score": 0.9,
+        "reasoning": "The model produced a Rust implementation that matches the expected functionality and correctly uses lifetimes. The only minor deviation is storing the result in a variable before printing, which is semantically equivalent to the expected direct println call."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-cloud/deepseek-v3.2",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 59411,
+      "accuracy": 0
+    }
+  ]
+}

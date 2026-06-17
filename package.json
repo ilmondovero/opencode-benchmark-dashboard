@@ -6,7 +6,10 @@
     "answer": "bun run src/answer.ts",
     "evaluate": "bun run src/evaluate.ts",
     "dashboard": "bun run src/dashboard.ts",
-    "build:dashboard": "esbuild public/dashboard.ts --bundle --outfile=public/dashboard.js --format=iife --target=es2020"
+    "build:dashboard": "esbuild public/dashboard.ts --bundle --outfile=public/dashboard.js --format=iife --target=es2020",
+    "sweep": "bun run src/sweep.ts",
+    "summarize": "bun run src/summarize.ts",
+    "export:static": "bun run build:dashboard && bun run src/export-static.ts"
   },
   "dependencies": {
     "chokidar": "^3.6.0"

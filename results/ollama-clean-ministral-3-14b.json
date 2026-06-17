@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-clean-ministral-3-14b",
+  "timestamp": "2026-06-17T08:13:35.693Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:13:35.693Z",
+      "model": "ollama-clean/ministral-3:14b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 7437,
+      "correct": false,
+      "score": 0,
+      "output": "```rust\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() { a } else { b }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => \"cammello\"\n}\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:13:43.003Z",
+        "correct": true,
+        "score": 1,
+        "reasoning": "The output implements the required Rust function with the correct lifetime annotation and logic, and includes a matching main that prints the longer string. The only difference is an extra pair of quotes in the comment, which does not affect correctness."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-clean/ministral-3:14b",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 7437,
+      "accuracy": 0
+    }
+  ]
+}

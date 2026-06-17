@@ -1,0 +1,36 @@
+{
+  "runId": "ollama-clean-gemma4-31b",
+  "timestamp": "2026-06-17T08:09:06.093Z",
+  "totalTests": 1,
+  "passed": 0,
+  "failed": 1,
+  "results": [
+    {
+      "timestamp": "2026-06-17T08:09:06.093Z",
+      "model": "ollama-clean/gemma4:31b",
+      "testCase": "CODING-typescript-rust",
+      "latencyMs": 5870,
+      "correct": false,
+      "score": 0,
+      "output": "```rust\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\"));\n}\n```\r\n",
+      "expected": "(it should use lifetimes ' like this below)\n---\n\nfn longer<'a>(a: &'a str, b: &'a str) -> &'a str {\n    if a.len() >= b.len() {\n        a\n    } else {\n        b\n    }\n}\n\nfn main() {\n    println!(\"{}\", longer(\"gatto\", \"cammello\")); // => cammello\n}",
+      "llmVerification": {
+        "verifiedBy": "ollama-clean/gpt-oss:120b",
+        "timestamp": "2026-06-17T08:09:14.647Z",
+        "correct": true,
+        "score": 1,
+        "reasoning": "The model provides the correct Rust translation with the appropriate lifetime annotation and equivalent logic. The main function prints the result correctly; the missing comment is optional and does not affect correctness."
+      }
+    }
+  ],
+  "modelStats": [
+    {
+      "model": "ollama-clean/gemma4:31b",
+      "totalTests": 1,
+      "passed": 0,
+      "failed": 1,
+      "avgLatencyMs": 5870,
+      "accuracy": 0
+    }
+  ]
+}
